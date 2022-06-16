@@ -21,6 +21,7 @@
 #include <string>
 #include <unistd.h>
 #include <vector>
+#include<algorithm>
 
 
 // http://stackoverflow.com/a/150971/2851815
@@ -42,7 +43,7 @@ iware::cpu::quantities_t iware::cpu::quantities() {
 				package_ids.emplace_back(physical_id);
 		}
 
-	ret.packages = package_ids.size();
+	ret.packages = std::max<size_t>(1, package_ids.size());
 	ret.physical = ret.logical / ret.packages;
 
 	return ret;
